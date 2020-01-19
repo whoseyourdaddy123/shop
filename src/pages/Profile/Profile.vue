@@ -1,18 +1,14 @@
 <template>
   <div>
     <section class="profile">
-      <header class="header">
-        <a class="header_title">
-          <span class="header_title_text">我的</span>
-        </a>
-      </header>
+      <HeaderTop title="我的"></HeaderTop>
       <section class="profile-number">
-        <a href="javascript:" class="profile-link">
+        <router-link to="/login" class="profile-link">
           <div class="profile_image">
             <i class="iconfont icon-person"></i>
           </div>
           <div class="user-info">
-            <p class="user-info-top">登录/注册</p>
+            <p class="user-info-top" >登录/注册</p>
             <p>
                 <span class="user-icon">
                   <i class="iconfont icon-shouji icon-mobile"></i>
@@ -23,7 +19,7 @@
           <span class="arrow">
               <i class="iconfont icon-jiantou1"></i>
             </span>
-        </a>
+        </router-link>
       </section>
       <section class="profile_info_data border-1px">
         <ul class="info_data_list">
@@ -98,12 +94,19 @@
 </template>
 
 <script type="text/ecmascript-6">
-export default {}
+  import HeaderTop from '../../components/HeaderTop/HeaderTop'
+  export default {
+    components: {
+      HeaderTop
+    },
+
+  }
 </script>
 
 <style lang="stylus" rel="stylesheet/stylus">
   @import "../../common/stylus/mixins.styl"
   .profile //我的
+    overflow hidden
     .header
       background-color #02a774
       position fixed
