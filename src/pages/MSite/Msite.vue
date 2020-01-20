@@ -2,7 +2,7 @@
     <div>
       <section class="msite">
         <!--首页头部-->
-        <HeaderTop :title="title">
+        <HeaderTop :title="address.formatted_address">
           <span class="header_search" slot="left">
             <i class="iconfont iconsousuo1"></i>
           </span>
@@ -131,32 +131,31 @@
   import 'swiper/css/swiper.min.css'
   import HeaderTop from '../../components/HeaderTop/HeaderTop'
   import ShopList from '../../components/ShopList/ShopList'
+  import {mapState} from 'vuex'
+
 export default {
-    data(){
-      return{
-        title:'aa'
-      }
+
+    computed:{
+      ...mapState(['address'])
     },
-  components:{
-    HeaderTop,
-    ShopList
-  },
-  mounted() {
-    this.getAddress()
-    new Swiper('.swiper-container',{
-      loop:true,
-      pagination:{
-        el: '.swiper-pagination'
-      }
-    })
-  },
-  methods:{
-      getAddress(){
-        this.$get('/api/test1').then((res)=>{
-          this.title = res
-        })
-      }
-  }
+
+    components:{
+      HeaderTop,
+      ShopList
+    },
+    mounted() {
+      //this.getAddress(),
+      //this.$store.dispatch('getAddress')
+      new Swiper('.swiper-container',{
+        loop:true,
+        pagination:{
+          el: '.swiper-pagination'
+        }
+      })
+    },
+   /* methods:{
+      ...mapActions(['getAddress'])
+    }*/
 }
 </script>
 

@@ -3,6 +3,7 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+import store from './store/index'
 import {getInfo,postInfo,updateInfo,deleteInfo} from "./api/axios";
 Vue.prototype.$get=getInfo;
 Vue.prototype.$post=postInfo;
@@ -14,6 +15,7 @@ Vue.config.productionTip = false
 new Vue({
   el: '#app',
   router,
+  store,
   components: { App },
   template: '<App/>'
 })
