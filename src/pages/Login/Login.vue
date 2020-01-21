@@ -5,16 +5,20 @@
         <div class="login_header">
           <h2 class="login_logo">硅谷外卖</h2>
           <div class="login_header_title">
-            <a href="javascript:;" class="on">短信登录</a>
-            <a href="javascript:;">密码登录</a>
+            <a href="javascript:;" :class="{on:loginMethods}" @click="loginMethods=true">短信登录</a>
+            <a href="javascript:;" :class="{on:!loginMethods}" @click="loginMethods=false">密码登录</a>
           </div>
         </div>
         <div class="login_content">
           <form>
-            <div class="on">
+            <div :class="{on: loginMethods}">
               <section class="login_message">
-                <input type="tel" maxlength="11" placeholder="手机号">
-                <button disabled="disabled" class="get_verification">获取验证码</button>
+                <input type="tel" maxlength="11" placeholder="手机号" v-model="phone">
+                <button :disabled="showYZM===false"
+                 class="get_verification" @click.prevent="sendYZM"
+                 :class="{onShowYZM: showYZM }">
+                  {{time !=0 ? `已发送${time}s` :'获取验证码'}}
+                  </button>
               </section>
               <section class="login_verification">
                 <input type="tel" maxlength="8" placeholder="验证码">
@@ -24,7 +28,7 @@
                 <a href="javascript:;">《用户服务协议》</a>
               </section>
             </div>
-            <div>
+            <div :class="{on: !loginMethods}">
               <section>
                 <section class="login_message">
                   <input type="tel" maxlength="11" placeholder="手机/邮箱/用户名">
@@ -42,6 +46,8 @@
                 </section>
               </section>
             </div>
+
+
             <button class="login_submit">登录</button>
           </form>
           <a href="javascript:;" class="about_us">关于我们</a>
@@ -55,7 +61,42 @@
 </template>
 
 <script type="text/ecmascript-6">
-    export default {}
+    export default {
+      data(){
+        return {
+          loginMethods:true, //true手机 false账号
+          phone:'',
+          time:0
+        }
+      },
+      computed:{
+        showYZM(){
+          const {phone} = this
+          return /^1[345789]\d{9}$/.test(phone)
+        }
+      },
+      methods:{
+        sendYZM(){
+          //倒计时
+
+          if(this.time==0){
+            this.time = 30
+            var interval = setInterval(()=>{
+              if(this.time>0){
+                this.time --
+              }else{
+                clearInterval(interval)
+              }
+            },1000);
+
+            console.log("sned")
+          }
+
+          //发送验证码
+
+        }
+      }
+    }
 </script>
 
 <style lang="stylus" rel="stylesheet/stylus">
@@ -119,6 +160,8 @@
                   color #ccc
                   font-size 14px
                   background transparent
+                  &.onShowYZM
+                    color black
               .login_verification
                 position relative
                 margin-top 16px
