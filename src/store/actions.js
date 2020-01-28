@@ -2,14 +2,14 @@
 import {
   RECEIVE_ADDRESS,
   RECEIVE_CATEGORIES,
-  RECEIVE_SHOPS
+  RECEIVE_SHOPS,
+  RECEIVE_USERINFO
 } from "./mutation-types";
-import {getInfo} from "../api/axios";
+import {getInfo,postInfo,updateInfo,deleteInfo} from "../api/axios";
 
 export default {
   //获取地址
    getAddress({commit,state}){
-
      //发送ajax请求
     const location =state.latitude + "," + state.longitude
     /*this.$get('/api/getLocations',location)
@@ -42,5 +42,9 @@ export default {
         commit(RECEIVE_SHOPS,{shops})
       }
     })
+  },
+  //用户信息
+  getUserinfo({commit},userinfo){
+     commit(RECEIVE_USERINFO,{userinfo})
   }
 }
