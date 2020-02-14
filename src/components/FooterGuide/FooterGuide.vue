@@ -2,25 +2,25 @@
   <footer class="footer_guide border-1px">
     <a href="javascript:;" class="guide_item" @click="$router.replace('/msite')" :class="{on: $route.path =='/msite'}">
       <span class="item_icon">
-        <i class="iconfont iconpisa"></i>
+        <i class="iconfont icon-waimai"></i>
       </span>
       <span>外卖</span>
     </a>
     <a href="javascript:;" class="guide_item" @click="$router.replace('/search')" :class="{on: $route.path =='/search'}">
       <span class="item_icon">
-        <i class="iconfont iconsousuo1"></i>
+        <i class="iconfont icon-search"></i>
       </span>
       <span>搜索</span>
     </a>
     <a href="javascript:;" @click="$router.replace('/order')" class="guide_item " :class="{on: $route.path =='/order'}">
       <span class="item_icon">
-        <i class="iconfont iconorder"></i>
+        <i class="iconfont icon-dingdan"></i>
       </span>
       <span>订单</span>
     </a>
     <a href="javascript:;" @click="$router.replace('/profile')" class="guide_item" :class="{on: $route.path =='/profile'}">
       <span class="item_icon">
-        <i class="iconfont iconshouye1"></i>
+        <i class="iconfont icon-geren"></i>
       </span>
       <span>我的</span>
     </a>

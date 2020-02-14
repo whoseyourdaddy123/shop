@@ -1,0 +1,142 @@
+{
+  "id": "1350090",
+  "name": "travel",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon",
+  "description": "travel 图标",
+  "glyphs": [
+    {
+      "icon_id": "270921",
+      "name": "32px_全球美食",
+      "font_class": "32pxquanqiumeishi",
+      "unicode": "e6c0",
+      "unicode_decimal": 59072
+    },
+    {
+      "icon_id": "765262",
+      "name": "首页",
+      "font_class": "shouye",
+      "unicode": "e612",
+      "unicode_decimal": 58898
+    },
+    {
+      "icon_id": "765290",
+      "name": "我的",
+      "font_class": "shouye1",
+      "unicode": "e615",
+      "unicode_decimal": 58901
+    },
+    {
+      "icon_id": "765343",
+      "name": "商店",
+      "font_class": "shouye2",
+      "unicode": "e61a",
+      "unicode_decimal": 58906
+    },
+    {
+      "icon_id": "765354",
+      "name": "购物车",
+      "font_class": "shouye3",
+      "unicode": "e61b",
+      "unicode_decimal": 58907
+    },
+    {
+      "icon_id": "831123",
+      "name": "香锅",
+      "font_class": "xiangguo",
+      "unicode": "e642",
+      "unicode_decimal": 58946
+    },
+    {
+      "icon_id": "1195428",
+      "name": "甜品",
+      "font_class": "tianpin",
+      "unicode": "e62b",
+      "unicode_decimal": 58923
+    },
+    {
+      "icon_id": "2674472",
+      "name": "返回",
+      "font_class": "fanhui",
+      "unicode": "e624",
+      "unicode_decimal": 58916
+    },
+    {
+      "icon_id": "2675116",
+      "name": "搜索",
+      "font_class": "sousuo",
+      "unicode": "e632",
+      "unicode_decimal": 58930
+    },
+    {
+      "icon_id": "3443888",
+      "name": "订单",
+      "font_class": "order",
+      "unicode": "e600",
+      "unicode_decimal": 58880
+    },
+    {
+      "icon_id": "5128433",
+      "name": "便当icon",
+      "font_class": "biandangicon",
+      "unicode": "e65c",
+      "unicode_decimal": 58972
+    },
+    {
+      "icon_id": "5830585",
+      "name": "搜索",
+      "font_class": "sousuo1",
+      "unicode": "e625",
+      "unicode_decimal": 58917
+    },
+    {
+      "icon_id": "6804731",
+      "name": "汉堡",
+      "font_class": "hanbao",
+      "unicode": "e601",
+      "unicode_decimal": 58881
+    },
+    {
+      "icon_id": "7042330",
+      "name": "粥",
+      "font_class": "zhou",
+      "unicode": "e729",
+      "unicode_decimal": 59177
+    },
+    {
+      "icon_id": "7853336",
+      "name": "炸串",
+      "font_class": "zhachuan",
+      "unicode": "e60b",
+      "unicode_decimal": 58891
+    },
+    {
+      "icon_id": "8233257",
+      "name": "30-分类-地方菜系",
+      "font_class": "-fenlei-difangcaixi",
+      "unicode": "e6a9",
+      "unicode_decimal": 59049
+    },
+    {
+      "icon_id": "8233282",
+      "name": "30-分类-简餐便当",
+      "font_class": "-fenlei-jiancanbiandang",
+      "unicode": "e6b1",
+      "unicode_decimal": 59057
+    },
+    {
+      "icon_id": "12456785",
+      "name": "Cookie",
+      "font_class": "Cookie",
+      "unicode": "e91a",
+      "unicode_decimal": 59674
+    },
+    {
+      "icon_id": "12695608",
+      "name": "披萨",
+      "font_class": "pisa",
+      "unicode": "e602",
+      "unicode_decimal": 58882
+    }
+  ]
+}

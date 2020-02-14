@@ -3,13 +3,13 @@
       <section class="msite">
         <!--首页头部-->
         <HeaderTop :title="address.formatted_address">
-          <span class="header_search" slot="left">
-            <i class="iconfont iconsousuo1"></i>
-          </span>
-          <span class="header_login" slot="right">
-            <i class="header_login_text">登录｜注册</i>
-          </span>
-
+          <router-link class="header_search" slot="left" to="/search">
+            <i class="iconfont icon-sousuo"></i>
+          </router-link>
+          <router-link class="header_login" slot="left" :to="userinfo.id ? '/userinfo': '/login'">
+            <i v-if="userinfo.id" class="iconfont icon-person"></i>
+            <span v-else class="header_login_text">登录｜注册</span>
+          </router-link>
         </HeaderTop>
         <!--首页导航-->
         <nav class="msite_nav">
@@ -22,9 +22,7 @@
                   </div>
                   <span>{{category.cname}}</span>
                 </a>
-
               </div>
-
             </div>
             <!-- Add Pagination -->
             <div class="swiper-pagination"></div>
@@ -43,11 +41,10 @@
   import HeaderTop from '../../components/HeaderTop/HeaderTop'
   import ShopList from '../../components/ShopList/ShopList'
   import {mapState} from 'vuex'
-
 export default {
 
     computed: {
-      ...mapState(['address', 'categories']),
+      ...mapState(['address', 'categories','userinfo']),
       categoryArr() {
         const {categories} = this
         const arr = []

@@ -5,8 +5,8 @@
       <span class="shop_header_title">附近商家</span>
     </div>
     <div class="shop_container" >
-      <ul class="shop_list" v-if="shops.length">
-        <li class="shop_li border-1px" v-for="(shop,index) in shops" :key="index">
+      <ul class="shop_list" v-if="shops.length" >
+        <li class="shop_li border-1px" v-for="(shop,index) in shops" :key="index" @click="getInto(shop.id)" >
           <a>
             <div class="shop_left">
               <img class="shop_img" src="./images/shop/1.jpg">
@@ -16,7 +16,6 @@
                 <h4 class="shop_title ellipsis">{{shop.name}}</h4>
                 <ul class="shop_detail_ul">
                   <li class="supports">保</li>
-
                 </ul>
               </section>
               <section class="shop_rating_order">
@@ -43,9 +42,7 @@
             </div>
           </a>
         </li>
-
       </ul>
-
       <ul v-else>
         <li v-for="item in 5" >
           <img src="./images/shop_back.svg">
@@ -58,10 +55,17 @@
 <script type="text/ecmascript-6">
   import {mapState} from 'vuex'
   import Star from '../Star/Star'
+  import {getInfo} from "../../api/axios";
+
   export default {
       computed:{
         ...mapState(['shops'])
       },
+    methods:{
+        getInto(id){
+          this.$router.push(`/seller/${id}`)
+        }
+    },
     components:{
         Star
     }
