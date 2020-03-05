@@ -1,8 +1,10 @@
 <template>
   <div class="shop-header">
     <nav class="shop-nav">
-      <a class="back" @click="$router.back()">
-        <i class="iconfont icon-arrow_left"></i>
+      <a class="back" @click="$router.push('/msite')">
+        <svg class="icon" aria-hidden="true">
+          <use xlink:href="#iconback"></use>
+        </svg>
       </a>
     </nav>
     <div class="shop-content">
@@ -47,7 +49,10 @@
           </ul>
           <h3 class="brief-modal-title"><span>公告</span></h3>
           <div class="brief-modal-notice">{{info.bulletin}}</div>
-          <div class="mask-footer"><span class="iconfont icon-close" @click="toggleShopShow"></span></div>
+          <div class="mask-footer">
+            <span class="iconfont " @click="toggleShopShow">
+          </span>
+          </div>
         </div>
         <div class="brief-modal-cover"></div>
       </div>

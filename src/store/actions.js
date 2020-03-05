@@ -15,21 +15,10 @@ import {getInfo,postInfo,updateInfo,deleteInfo} from "../api/axios";
 
 export default {
   //获取地址
-   getAddress({commit,state}){
-     //发送ajax请求
-    const location =state.latitude + "," + state.longitude
-    /*this.$get('/api/getLocations',location)
-      .then(res =>{
-        this.address = res.data
-      })*/
-
-     //提交给mutations
-    getInfo(`/api/getLocations/${location}`).then(res =>{
-      const address  = res.result
-      commit(RECEIVE_ADDRESS,{address})
-    })
-
-  },
+   getAddress({commit,state},address){
+     console.log("address action..."+JSON.stringify(address))
+     commit(RECEIVE_ADDRESS,{address})
+    },
 
   //获取商品分类
   getCategories({commit,state}){
@@ -71,6 +60,10 @@ export default {
     getInfo(`/api/seller/${id}`).then(res=>{
       if(res.code == 200){
         const goods = res.data
+
+        let memofood = localStorage.getItem("cartfoods")
+
+
         commit(RECEIVE_GOODS,{goods})
         //id()
       }

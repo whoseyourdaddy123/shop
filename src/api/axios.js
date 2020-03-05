@@ -3,7 +3,6 @@ const baseUrl = 'http://localhost:8081'
 
 export  function getInfo(url,params={}) {
   return new Promise((resolve,reject)=>{
-    console.log("url get"+url)
     axios.get(url,{params:params})
       .then((response)=>{
         resolve(response.data)

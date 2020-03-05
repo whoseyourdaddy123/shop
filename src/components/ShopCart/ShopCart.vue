@@ -5,14 +5,14 @@
         <div class="content-left" @click="changeCartFood">
           <div class="logo-wrapper">
             <div class="logo " :class="{highlight :totalCount}">
-              <i class="iconfont icon-shopping_cart"  :class="{highlight :totalCount}"></i></div>
+              <i class="iconfont iconshouye7"  :class="{highlight :totalCount}"></i></div>
             <div class="num">{{totalCount}}</div>
           </div>
           <div class="price" :class="{highlight :totalCount}">￥{{totalPrice}}</div>
           <div class="desc" >另需配送费￥{{info.deliverPrice}} 元</div>
         </div>
         <div class="content-right">
-          <div class="pay" :class="payClass"> {{payText}}</div>
+          <div class="pay" :class="payClass" @click="submitOrder(payClass)"> {{payText}}</div>
         </div>
       </div>
       <transition name="move">
@@ -44,6 +44,7 @@
   import BScroll from "better-scroll"
   import {mapState,mapGetters} from 'vuex'
   import CartControl from "../CartControl/CartControl";
+  import {Toast} from 'mint-ui'
   export default {
     components: {CartControl},
     data(){
@@ -52,7 +53,7 @@
       }
     },
     computed:{
-      ...mapState(['info','cartFoods']),
+      ...mapState(['info','cartFoods','userinfo']),
       ...mapGetters(['totalPrice','totalCount']),
 
       payClass(){
@@ -88,8 +89,6 @@
 
           })
         }
-
-
         return this.showCartFood
       }
     },
@@ -103,6 +102,33 @@
         MessageBox.confirm('确定要清空购物车吗?').then(action => {
           this.$store.dispatch('clearCart')
         }).catch(()=>{});
+      },
+      submitOrder(text){
+        if('not-enough'== text){
+          console.log("not enough")
+          return
+        }else{
+          var data = []
+          for(var i=0;i<this.cartFoods.length;i++){
+            data.push({id:this.cartFoods[i].id,count:this.cartFoods[i].count,name:this.cartFoods[i].name})
+          }
+          localStorage.setItem('cartfoods',JSON.stringify(data))
+          let id = this.userinfo.id
+          if(id == null){
+              Toast({
+                message: '还没有登入',
+                position: 'bottom',
+                duration: 1000
+              });
+            setTimeout(()=>{
+              this.$router.push('/login')
+            },1000)
+
+          }else{
+
+            this.$router.push('/payment')
+          }
+        }
       }
     }
   }
@@ -141,13 +167,14 @@
             height 100%
             border-radius 50%
             text-align center
-            background #2b343c
+            background grey
             &.highlight
               background $green
-            .icon-shopping_cart
+            .iconshouye7
+
               line-height 44px
               font-size 24px
-              color #80858a
+              color yellow
               &.highlight
                 color #fff
           .num

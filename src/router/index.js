@@ -10,6 +10,9 @@ import Shop from "../pages/Shop/Shop";
 import ShopGoods from "../pages/Shop/ShopGoods/ShopGoods";
 import ShopInfos from "../pages/Shop/ShopInfos/ShopInfos";
 import ShopRatings from "../pages/Shop/ShopRatings/ShopRatings";
+import Payment from "../pages/Payment/Payment"
+import Address from "../pages/Address/Address"
+import NewAddress from "../pages/NewAddress/NewAddress"
 Vue.use(VueRouter)
 export default new VueRouter({
   routes: [
@@ -70,6 +73,18 @@ export default new VueRouter({
           component: ShopInfos
         },
         ]
+    },
+    {
+      path: '/payment',
+      component: Payment
+    },
+    {
+      path: '/address',
+      component: Address
+    },
+    {
+      path: '/newAddress',
+      component: NewAddress
     }
   ]
 

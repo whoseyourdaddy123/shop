@@ -39,8 +39,11 @@ export default {
   [INCR_CART](state,{food}){
     if(!food.count){
       Vue.set(food,'count',1)
+      console.log("fod init++")
+
       state.cartFoods.push(food)
     }else{
+      console.log("fod count++")
       food.count++
     }
   },

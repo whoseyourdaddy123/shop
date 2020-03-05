@@ -17,20 +17,21 @@
         </div>
       </div>
       <div class="split"></div>
-      <div class="ratingselect">
-        <div class="rating-type border-1px">
-          <span class="block positive " :class="{active: selectType ==2}" @click="setSelectType(2)">
+      <div class="ratingselect" >
+        <div class="rating-type border-1px" >
+
+          <button class="block positive " :class="{active: selectType ==2}" @click="setSelectType(2)">
             全部
             <span class="count">{{ratings.length}}</span>
-          </span>
-          <span class="block positive" :class="{active: selectType ==0}" @click="setSelectType(0)">
+          </button>
+          <button class="block positive" :class="{active: selectType ==0}" @click="setSelectType(0)">
             满意
             <span class="count">{{positiveSize}}</span>
-          </span>
-          <span class="block negative" :class="{active: selectType ==1}" @click="setSelectType(1)">
+          </button>
+          <button class="block negative" :class="{active: selectType ==1}" @click="setSelectType(1)">
           不满意
           <span class="count">{{ratings.length-positiveSize}}</span>
-        </span>
+        </button>
         </div>
         <div class="switch" :class="{on: onlyShowText}" @click="toggleShowText"><span class="iconfont icon-check_circle"></span> <span class="text">只看有内容的评价</span></div>
       </div>
@@ -105,6 +106,7 @@
       }
     },
     methods:{
+
       setSelectType(selectType){
         this.selectType= selectType
       },
@@ -113,7 +115,6 @@
       },
       _initScroll(){
         this.scroll = new BScroll('.ratings')
-        console.log("shopratings 中创建scroll")
 
       }
     }
