@@ -63,6 +63,7 @@
       },
     methods:{
         getInto(id){
+          localStorage.setItem("sid",id)
           this.$router.push(`/seller/${id}`)
         }
     },

@@ -18,7 +18,7 @@
               <div class="swiper-slide" v-for="(categories,index) in categoryArr" :key="index">
                 <a href="javascript:" class="link_to_food"  v-for="(category,index) in categories" :key="index">
                   <div class="food_container">
-                    <img :src="category.cimage">
+                    <img v-lazy="category.cimage">
                   </div>
                   <span>{{category.cname}}</span>
                 </a>

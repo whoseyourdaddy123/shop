@@ -28,11 +28,11 @@
         <div class="item">
           <ul>
             <li class="ditem" v-for="(cartFood,inde) in cartFoods">
-              <img :src="cartFood.img" width="55px" height="55px">
+              <img v-lazy="cartFood.img" width="55px" height="55px">
               <div class="ditemw">
                 <div class="foodnameprice">
                   <span>{{cartFood.name}}</span>
-                  <span class="foodprice">¥{{cartFood.price* cartFood.count}}</span>
+                  <span class="foodprice">¥{{Math.round(cartFood.price* cartFood.count*100)/100}}</span>
                 </div>
                 <div class="fen"></div>
                 <div class="muti"><span>✖️{{cartFood.count}} 份</span></div>
@@ -84,6 +84,7 @@
 <script type="text/ecmascript-6">
   import {mapState,mapGetters} from 'vuex'
   import {postInfo} from "../../api/axios";
+  import {Toast} from 'mint-ui'
   export default {
     data(){
       return{
@@ -102,11 +103,28 @@
         this.message = peoplenum;
       },
       submitOrder(){
-        postInfo('/api/submitOrder',this.orderinfo).then((res)=>{
-          if(res.code == 200){
-            console.log("aaaa..")
-          }
-        })
+        if(!this.address.address){
+          Toast({
+            message: '选择送货地址!',
+            position: 'bottom',
+            duration: 1500
+          });
+        }else{
+          postInfo('/api/order/submitOrder',this.orderinfo).then((res)=>{
+            if(res.code == 200){
+              Toast({
+                message: '下单成功!',
+                position: 'bottom',
+                duration: 2000
+              });
+              setTimeout(()=>{
+                this.$store.dispatch('clearCart')
+                this.$router.push('/order')
+              },2000)
+            }
+          })
+        }
+
       },
 
     },
@@ -119,19 +137,19 @@
     },
     created() {
       this.orderinfo = {
+        uid: this.userinfo.id,
         username: this.userinfo.username,
         deliveruser: this.address,
         phone: this.userinfo.phone,
         cartFoods: JSON.parse(localStorage.getItem("cartfoods")),
-        totalprice: parseInt(this.totalPrice) + this.info.deliverPrice,
-        shopid: this.info.id,
-        shopname: this.info.name,
+        totalprice: this.totalPrice + this.info.deliverPrice,
+        shopid: this.info.id
       }
     }
   }
 </script>
 
-<style lang="stylus" rel="stylesheet/stylus">
+<style lang="stylus" rel="stylesheet/stylus" scoped>
   .address
     padding: 7px
   .shop
@@ -194,7 +212,7 @@
     height 30px
     border-top  1px grey dashed
     span
-      width 80px
+      width 100px
     .totalprice
       float  right
       margin-top 10px

@@ -25,6 +25,12 @@ export default {
   },
   [RESET_USERINFO](state){
     state.userinfo = {}
+    state.address = {}
+    state.cartFoods = []
+    state.categories = []
+    state.info = {}
+    state.ratings = []
+    state.searchList = []
   },
   [RECEIVE_GOODS](state,{goods}){
     state.goods = goods

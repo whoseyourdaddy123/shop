@@ -29,7 +29,8 @@
                 <input type="tel" maxlength="8" placeholder="验证码" v-model="code">
               </section>
               <section class="login_hint">
-                温馨提示：未注册硅谷外卖帐号的手机号，登录时将自动注册，且代表已同意
+                <span style="color: red">初始密码123456</span><br>
+                温馨提示：未注册fantuan外卖帐号的手机号，登录时将自动注册，且代表已同意
                 <a href="javascript:;">《用户服务协议》</a>
               </section>
             </div>
@@ -128,8 +129,6 @@
         })
       },
         submitForm() {
-        console.log("router ..."+this.$route.path)
-        let result
         if (this.loginMethods) {
           //手机登入
           const {rightPhone, phone, code} = this
@@ -146,6 +145,9 @@
             .then(res=>{
              if(res.code ==200){
                const user = res.data
+               console.log(JSON.stringify(user))
+               localStorage.setItem("userId",user.id)
+               this.$store.dispatch('getUserinfo',user)
                this.$router.replace('/profile')
              }else{
                this.showAlert(res.message)
@@ -169,9 +171,10 @@
             .then(res=>{
               if(res.code ==200){
                 const user = res.data
+                localStorage.setItem("userId",user.id)
                 this.$store.dispatch('getUserinfo',user)
                // this.$router.replace('/profile')
-                this.$router.back(-1)
+                this.$router.replace('/profile')
               }else{
                 this.getVerifyCode();
                 this.showAlert(res.message)

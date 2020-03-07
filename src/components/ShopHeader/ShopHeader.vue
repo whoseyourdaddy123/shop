@@ -9,7 +9,7 @@
     </nav>
     <div class="shop-content">
       <img class="content-image"
-           :src="info.avatar">
+           v-lazy="info.avatar">
       <div class="header-content" @click="toggleShopShow">
         <h2 class="content-title"> <span class="content-tag"> <span class="mini-tag">品牌</span>
 </span> <span class="content-name">{{info.name}}</span> <i class="content-icon"></i></h2>

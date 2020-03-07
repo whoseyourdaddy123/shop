@@ -13,14 +13,14 @@
           </li>
         </ul>
       </div>
-      <div class="foods-wrapper" ref="foodsWrapper" @click="openFood">
-        <ul ref="cheight">
+      <div class="foods-wrapper" ref="foodsWrapper" @click.prevent="openFood">
+        <ul ref="cheight" >
           <li class="food-list-hook"  v-for="(good,index) in goods" :key="index">
             <h1 class="title">{{good.name}}</h1>
             <ul>
               <li class="food-item bottom-border-1px" v-for="(food,index) in good.foods"
-                  :key="index" @click="clickFood(food)">
-                <div class="icon"><img width="57" height="57" :src="food.img"></div>
+                  :key="index" @click.stop="clickFood(food)">
+                <div class="icon"><img width="57" height="57" v-lazy="food.img"></div>
                 <div class="content"><h2 class="name">{{food.name}}</h2>
                   <p class="desc">{{food.info}}</p>
                   <div class="extra"><span class="count">月售 {{food.sellCount}} 份</span>
@@ -70,6 +70,7 @@
       this.$store.dispatch('getInfos',id)
       this.$store.dispatch('getRatings',id)
       this.$store.dispatch('getGoods',id)
+      localStorage
 
      /*this.$store.dispatch('getGoods',id).then(()=> {
        this.$nextTick(() => {
@@ -122,6 +123,7 @@
         this.food =food
       },
       openFood(){
+        console.log("open food...")
         this.$refs.food.toggleShow()
       },
 

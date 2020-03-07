@@ -37,9 +37,7 @@
             .then((res)=>{
             if(res.code == 200){
               let address = {username:this.username,phone:this.phone,address:this.address}
-              console.log("address ajax"+JSON.stringify(address))
               this.$store.dispatch('getAddress',address)
-              return
             }
           })
         },

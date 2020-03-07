@@ -3,7 +3,8 @@ import {
   RECEIVE_ADDRESS,
   RECEIVE_CATEGORIES,
   RECEIVE_SHOPS,
-  RECEIVE_USERINFO, RESET_USERINFO,
+  RECEIVE_USERINFO,
+  RESET_USERINFO,
   RECEIVE_GOODS,
   RECEIVE_INFO,
   RECEIVE_RATINGS,
@@ -52,6 +53,7 @@ export default {
   logout({commit}){
      getInfo('/api/font/user/logout').then(()=>{
        commit(RESET_USERINFO)
+
      })
   },
 
@@ -60,10 +62,7 @@ export default {
     getInfo(`/api/seller/${id}`).then(res=>{
       if(res.code == 200){
         const goods = res.data
-
         let memofood = localStorage.getItem("cartfoods")
-
-
         commit(RECEIVE_GOODS,{goods})
         //id()
       }
@@ -102,7 +101,6 @@ export default {
     commit(CLEAR_CART)
   },
   search({commit,state},searchName){
-
      getInfo(`/api/search`,{searchName:searchName})
        .then(res=>{
          if(res.code=== 200){

@@ -4,7 +4,7 @@
       <div class="image-header"><img
         :src="food.img">
         <p class="foodpanel-desc">{{food.info}}</p>
-        <div class="back" @click="toggleShow"><i class="iconfont iconcancel "></i></div>
+        <div class="back" @click.prevent="toggleShow"><i class="iconfont iconcancel "></i></div>
       </div>
       <div  class="content"><h1 class="title">{{food.name}}</h1>
         <div class="detail"><span class="sell-count">月售 {{food.sellCount}} 份</span> <span class="rating">好评率 100%</span></div>
@@ -14,7 +14,7 @@
         </div>
       </div>
     </div>
-    <div class="food-cover" @click="toggleShow"></div>
+    <div class="food-cover" @click.prevent="toggleShow"></div>
   </div>
 </template>
 

@@ -15,6 +15,7 @@ import Address from "../pages/Address/Address"
 import NewAddress from "../pages/NewAddress/NewAddress"
 Vue.use(VueRouter)
 export default new VueRouter({
+  mode:'history',
   routes: [
     {
       path: '/',
@@ -57,8 +58,8 @@ export default new VueRouter({
       component: Shop,
       children:[
         {
-          path:'',
-          component: ShopGoods
+          path:'/',
+          redirect: '/seller/goods/:id'
         },
         {
           path:'/seller/goods/:id',
