@@ -13,6 +13,8 @@ import ShopRatings from "../pages/Shop/ShopRatings/ShopRatings";
 import Payment from "../pages/Payment/Payment"
 import Address from "../pages/Address/Address"
 import NewAddress from "../pages/NewAddress/NewAddress"
+import Comment from '../pages/Comment/Comment'
+
 Vue.use(VueRouter)
 export default new VueRouter({
   mode:'history',
@@ -86,6 +88,11 @@ export default new VueRouter({
     {
       path: '/newAddress',
       component: NewAddress
+    },
+    {
+      name: 'Comment',
+      path: '/comment/:id',
+      component: Comment
     }
   ]
 

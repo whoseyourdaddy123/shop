@@ -6,7 +6,7 @@
           <img src="./tx.jpg" width="75px" height="75px">
         </div>
         <div class="username">
-          <span v-if="userinfo.username">{{userinfo.username}}</span>
+          <span v-if="userinfo.username||this.user.username">{{userinfo.username ||this.user.username}}</span>
           <span v-else>尚未登录</span>
         </div>
       </div>
@@ -70,8 +70,21 @@
   import HeaderTop from '../../components/HeaderTop/HeaderTop'
   import {mapState} from "vuex";
   import { MessageBox,Toast } from 'mint-ui';
+  import {getInfo} from "../../api/axios";
 
   export default {
+    created(){
+      const uid = sessionStorage.getItem("userId")
+      getInfo('/api/user/findByUserId',{id:uid}).then((res)=>{
+        this.user = res.data
+      })
+
+    },
+    data(){
+      return{
+        user:{}
+      }
+    },
     components: {
       HeaderTop
     },
@@ -89,7 +102,7 @@
         }else{
           MessageBox.confirm('确定退出?').then(action => {
             this.$store.dispatch('logout')
-            localStorage.removeItem("userId")
+            sessionStorage.removeItem("userId")
             this.$router.replace('/login')
           }).catch(()=>{});
         }

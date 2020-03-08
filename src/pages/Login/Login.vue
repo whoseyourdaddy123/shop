@@ -146,7 +146,7 @@
              if(res.code ==200){
                const user = res.data
                console.log(JSON.stringify(user))
-               localStorage.setItem("userId",user.id)
+               sessionStorage.setItem("userId",user.id)
                this.$store.dispatch('getUserinfo',user)
                this.$router.replace('/profile')
              }else{
@@ -171,7 +171,7 @@
             .then(res=>{
               if(res.code ==200){
                 const user = res.data
-                localStorage.setItem("userId",user.id)
+                sessionStorage.setItem("userId",user.id)
                 this.$store.dispatch('getUserinfo',user)
                // this.$router.replace('/profile')
                 this.$router.replace('/profile')

@@ -44,11 +44,11 @@ export default {
      commit(RECEIVE_USERINFO,{userinfo})
   },
   //刷新页面给userinfo赋值
-  regetUserinfo({commit}){
+  /*regetUserinfo({commit}){
      getInfo('/api/font/user/userinfo').then((userinfo)=>{
        commit(RECEIVE_USERINFO,{userinfo})
      })
-  },
+  },*/
   //退出
   logout({commit}){
      getInfo('/api/font/user/logout').then(()=>{

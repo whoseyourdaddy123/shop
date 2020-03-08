@@ -14,7 +14,7 @@ export default {
   },
   mounted() {
    // this.$store.dispatch('getAddress')
-    this.$store.dispatch('regetUserinfo')
+   // this.$store.dispatch('regetUserinfo')
   },
   provide(){
     return{

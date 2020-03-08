@@ -48,7 +48,11 @@
             </div>
             <div class="footer">
               <p>
-                <mt-button style="height: 25px;background-color: #26a2ff" size="small">评价</mt-button>
+
+                <mt-button
+                  style="height: 25px;background-color: #26a2ff" size="small"
+                  v-if="order.commentStatus == -1" @click="commentOrder(order.orderId)">去评价</mt-button>
+                <mt-button style="height: 25px;" disabled size="small" v-else>已评价</mt-button>
                 <span style="float: right">
                   <mt-button style="height: 25px" size="small" @click="delOrder(order.orderId)">删除</mt-button>
                   <mt-button style="height: 25px;background-color: #FFD161" size="small">再来一单</mt-button>
@@ -84,11 +88,11 @@
     },
     created() {
       //获取用户的订单
-      const uid = localStorage.getItem("userId")
+      const uid = sessionStorage.getItem("userId")
       this.uid = uid
-      if(this.uid){
+      if(this.uid ){
         setTimeout(()=>{
-          getInfo('/api/order/all', {userid: this.userinfo.id || userid})
+          getInfo('/api/order/all', {userid: this.userinfo.id || this.uid})
             .then((res) => {
               this.orders = res.data
             })
@@ -119,6 +123,10 @@
         }).catch(()=>{});
 
 
+      },
+      commentOrder(id){
+        //this.$router.push(`/comment/${id}`)
+        this.$router.push({name:'Comment',params:{id:id}})
       }
     },
     computed: {
