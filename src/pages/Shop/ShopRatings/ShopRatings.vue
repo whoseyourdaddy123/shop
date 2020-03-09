@@ -24,26 +24,30 @@
             全部
             <span class="count">{{ratings.length}}</span>
           </button>
-          <button class="block positive" :class="{active: selectType ==0}" @click="setSelectType(0)">
+          <button class="block positive" :class="{active: selectType ==1}" @click="setSelectType(1)">
             满意
             <span class="count">{{positiveSize}}</span>
           </button>
-          <button class="block negative" :class="{active: selectType ==1}" @click="setSelectType(1)">
+          <button class="block negative" :class="{active: selectType ==0}" @click="setSelectType(0)">
           不满意
           <span class="count">{{ratings.length-positiveSize}}</span>
         </button>
         </div>
-        <div class="switch" :class="{on: onlyShowText}" @click="toggleShowText"><span class="iconfont icon-check_circle"></span> <span class="text">只看有内容的评价</span></div>
+        <div class="switch"  >
+          <button class="text" v-if="!onlyShowText" style="background-color: #FFD161" @click="toggleShowText">只看有内容的评价</button>
+          <button class="text" v-else style="background-color: #FFD161" @click="toggleShowText">看全部评价</button>
+
+        </div>
       </div>
       <div class="rating-wrapper" >
         <ul>
           <li class="rating-item" v-for="(rating,index) in filterRatings" :key="index">
             <div class="avatar">
-              <img width="28" height="28" :src="rating.avatar"></div>
+              <img width="28" height="28" src="./tx.jpg"></div>
             <div class="content">
               <h1 class="name">{{rating.username}}</h1>
               <div class="star-wrapper">
-                <Star :score="rating.score" :size="24"/>
+                <Star :score="rating.foodscore" :size="24"/>
                 <span class="delivery">{{rating.score}}</span></div>
               <p class="text">{{rating.comment}}</p>
               <div class="time">{{rating.rateTime}}</div>
@@ -61,14 +65,6 @@
   import Star from '../../../components/Star/Star'
   export default {
     mounted(){
-    /*  this.$store.dispatch('getRatings',()=>{
-        this.$nextTick(()=>{
-          let bscroll = new BScroll(this.$refs.ratings,{
-            click:true
-          })
-        })
-      })*/
-
       if(!this.info.id){
         const id = this.$route.params.id
         this.$store.dispatch('getRatings',id)
@@ -79,7 +75,7 @@
     },
     data(){
       return{
-        onlyShowText: true,
+        onlyShowText: false,
         selectType: 2
       }
     },
@@ -103,19 +99,21 @@
         this.$nextTick(()=>{
           this._initScroll()
         })
+      },
+      filterRatings(){
+        this.scroll.refresh()
       }
     },
     methods:{
-
       setSelectType(selectType){
         this.selectType= selectType
       },
       toggleShowText(){
+        console.log("button..")
         this.onlyShowText = !this.onlyShowText
       },
       _initScroll(){
         this.scroll = new BScroll('.ratings')
-
       }
     }
   }

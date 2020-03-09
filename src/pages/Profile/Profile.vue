@@ -74,11 +74,6 @@
 
   export default {
     created(){
-      const uid = sessionStorage.getItem("userId")
-      getInfo('/api/user/findByUserId',{id:uid}).then((res)=>{
-        this.user = res.data
-      })
-
     },
     data(){
       return{

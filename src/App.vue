@@ -7,14 +7,20 @@
 
 <script>
 import FooterGuide from '../src/components/FooterGuide/FooterGuide'
+import {getInfo} from "./api/axios";
 export default {
   name: 'App',
   components: {
     FooterGuide
   },
   mounted() {
-   // this.$store.dispatch('getAddress')
-   // this.$store.dispatch('regetUserinfo')
+    const uid = sessionStorage.getItem("userId")
+    if(uid){
+      getInfo('/api/user/findByUserId',{id:uid}).then((res)=>{
+        this.user = res.data
+        this.$store.dispatch('getUserinfo',this.user)
+      })
+    }
   },
   provide(){
     return{

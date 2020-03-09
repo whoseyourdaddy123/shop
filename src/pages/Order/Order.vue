@@ -6,7 +6,7 @@
       <button @click.stop="$router.push('/login')">立即登陆</button>
     </section>
     <scroll v-else :data="orders" ref="order" class="order">
-     <ul style="background-color: #ffffff">
+      <ul style="background-color: #ffffff">
       <li v-for="(order,index) in orders" class="listyle">
         <div>
           <div class="suojin">
@@ -64,7 +64,9 @@
         </div>
       </li>
     </ul>
-      <loading v-show="!orders.length"></loading>
+      <loading  v-if="!orders.length && this.flag">
+      </loading>
+
     </scroll>
 
   </div>
@@ -82,6 +84,7 @@
     name: "Order",
     data() {
       return {
+        flag: true,
         orders: [],
         uid: 0,
       }
@@ -91,13 +94,15 @@
       const uid = sessionStorage.getItem("userId")
       this.uid = uid
       if(this.uid ){
-        setTimeout(()=>{
+
           getInfo('/api/order/all', {userid: this.userinfo.id || this.uid})
             .then((res) => {
               this.orders = res.data
             })
-        },500)
-      }
+        }
+      setTimeout(()=>{
+        this.flag = false
+      },300)
 
     },
     methods:{
