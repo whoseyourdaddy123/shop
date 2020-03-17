@@ -43,7 +43,10 @@
         <ul>
           <li class="rating-item" v-for="(rating,index) in filterRatings" :key="index">
             <div class="avatar">
-              <img width="28" height="28" src="./tx.jpg"></div>
+            <img v-if="rating.avatar" :src="rating.avatar" width="28px" height="28px">
+
+              <img  v-else width="28" height="28" src="./tx.jpg">
+            </div>
             <div class="content">
               <h1 class="name">{{rating.username}}</h1>
               <div class="star-wrapper">

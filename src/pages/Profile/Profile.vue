@@ -3,7 +3,9 @@
     <section class="head">
       <div class="bg">
         <div class="tx">
-          <img src="./tx.jpg" width="75px" height="75px">
+          <img v-if="userinfo.avatar" :src="userinfo.avatar" width="75px" height="75px">
+
+          <img  v-else src="./tx.jpg" width="75px" height="75px">
         </div>
         <div class="username">
           <span v-if="userinfo.username||this.user.username">{{userinfo.username ||this.user.username}}</span>

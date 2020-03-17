@@ -9,7 +9,7 @@
         <li class="shop_li border-1px" v-for="(shop,index) in shops" :key="index" @click="getInto(shop.id)" >
           <a>
             <div class="shop_left">
-              <img class="shop_img" src="./images/shop/1.jpg">
+              <img class="shop_img" :src="shop.avatar">
             </div>
             <div class="shop_right">
               <section class="shop_detail_header">
@@ -29,7 +29,8 @@
                   </div>
                 </section>
                 <section class="shop_rating_order_right">
-                  <span class="delivery_style delivery_right">fantuan专送</span>
+                  <span class="delivery_style delivery_right" v-if="shop.description">{{shop.description}}</span>
+                  <span class="delivery_style delivery_right" v-else>fantuan专送</span>
                 </section>
               </section>
               <section class="shop_distance">
