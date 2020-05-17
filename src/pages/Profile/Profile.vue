@@ -76,10 +76,12 @@
 
   export default {
     created(){
+
     },
     data(){
       return{
-        user:{}
+        user:{},
+        info:''
       }
     },
     components: {
@@ -104,6 +106,9 @@
           }).catch(()=>{});
         }
 
+      },
+      addIcon(suffix){
+        return 'icon'+suffix;
       }
     }
 

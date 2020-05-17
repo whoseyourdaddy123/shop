@@ -20,6 +20,7 @@
   import {postInfo} from "../../api/axios";
   import Toast from "mint-ui/packages/toast/src/toast";
     export default {
+      name:'newAddress1',
       data(){
         return{
           username:'',
@@ -38,8 +39,10 @@
             if(res.code == 200){
               let address = {username:this.username,phone:this.phone,address:this.address}
               this.$store.dispatch('getAddress',address)
+              this.$router.push("/address").catch(err => {err})
             }
           })
+
         },
 
       }

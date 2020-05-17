@@ -36,6 +36,7 @@
   import {getInfo} from "../../api/axios";
 
   export default {
+    name:'address1',
     data() {
       return{
         currentAddress:{},
@@ -65,7 +66,7 @@
       ...mapState(['userinfo', 'info','address'])
     },
     created() {
-      this.getAllAddress()
+        this.getAllAddress()
     }
   }
 </script>

@@ -12,7 +12,7 @@
           </router-link>
         </HeaderTop>
         <!--首页导航-->
-        <nav class="msite_nav">
+      <!--  <nav class="msite_nav">
           <div class="swiper-container" v-if="categories.length">
             <div class="swiper-wrapper">
               <div class="swiper-slide" v-for="(categories,index) in categoryArr" :key="index">
@@ -24,11 +24,11 @@
                 </a>
               </div>
             </div>
-            <!-- Add Pagination -->
+            &lt;!&ndash; Add Pagination &ndash;&gt;
             <div class="swiper-pagination"></div>
           </div>
           <img src="./images/msite_back.svg" v-else>
-        </nav>
+        </nav>-->
         <!--首页附近商家-->
         <ShopList></ShopList>
       </section>
@@ -45,7 +45,7 @@ export default {
 
     computed: {
       ...mapState(['address', 'categories','userinfo']),
-      categoryArr() {
+     /* categoryArr() {
         const {categories} = this
         const arr = []
         let minArr = []
@@ -60,10 +60,10 @@ export default {
           minArr.push(category)
         })
         return arr
-      }
+      }*/
     },
   watch:{
-      categories(value) {
+     /* categories(value) {
         this.$nextTick(()=>{
           new Swiper('.swiper-container',{
             loop:false,
@@ -72,7 +72,7 @@ export default {
             }
           })
         })
-    }
+    }*/
   },
 
     components:{
@@ -82,7 +82,7 @@ export default {
     mounted() {
       //this.getAddress(),
       //this.$store.dispatch('getAddress')
-      this.$store.dispatch('getCategories')
+      //this.$store.dispatch('getCategories')
       this.$store.dispatch('getShops')
     },
    /* methods:{

@@ -4,13 +4,17 @@
       <div class="image-header"><img
         :src="food.img">
         <p class="foodpanel-desc">{{food.info}}</p>
-        <div class="back" @click="toggleShow"><i class="iconfont iconcancel "></i></div>
+        <div class="back" @click="toggleShow">
+          <svg class="icon" aria-hidden="true">
+            <use xlink:href="#iconcancel"></use>
+          </svg>
+        </div>
       </div>
       <div  class="content"><h1 class="title">{{food.name}}</h1>
         <div class="detail"><span class="sell-count">月售 {{food.sellCount}} 份</span> <span class="rating">好评率 100%</span></div>
         <div class="price"><span class="now">￥{{food.price}}</span> <span class="old" v-show="food.oldPrice">￥{{food.oldPrice}}</span></div>
         <div class="cartcontrol-wrapper">
-          <cart-control :food="food"></cart-control>
+          <cart-control :food="food" :cartFoods="cartFoods" ></cart-control>
         </div>
       </div>
     </div>
@@ -23,7 +27,8 @@
   export default {
     components: {CartControl},
     props:{
-      food:Object
+      food:Object,
+      cartFoods: Array
     },
     data(){
       return{

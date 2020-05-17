@@ -27,7 +27,7 @@
         <div class="pic-wrapper">
           <ul class="pic-list" ref="pics">
             <li class="pic-item"><img width="120" height="90"
-                                      src="https://fuss10.elemecdn.com/f/7f/d1422ec824a0a9d1fb879c57ab533jpeg.jpeg"/>
+                                      src="http://qaf70fxii.bkt.clouddn.com/yEauzeZU6xo.jpg"/>
             </li>
 
           </ul>
@@ -37,7 +37,6 @@
       <div class="split"></div>
       <section class="section"><h3 class="section-title">商家信息</h3>
         <ul class="detail">
-          <li><span class="bold">品类</span> <span>{{info.categoryName}}</span></li>
           <li><span class="bold">商家电话</span> <span>{{info.phone}}</span></li>
           <li><span class="bold">地址</span> <span>{{info.address}}</span></li>
           <li><span class="bold">营业时间</span> <span>08:35-23:00</span></li>
@@ -61,7 +60,6 @@
     methods:{
       _initScroll(){
         this.scroll = new BScroll('.shop-info')
-        console.log("shopinfos 中创建scroll")
         const ul = this.$refs.pics
         ul.style.width = 1000+'px'
         new BScroll('.pic-wrapper',{

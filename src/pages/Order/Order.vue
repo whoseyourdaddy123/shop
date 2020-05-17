@@ -1,6 +1,6 @@
 <template>
   <div>
-    <section v-if="!this.uid" class="order_no_login">
+    <section v-if="this.uid == null" class="order_no_login">
       <img src="./images/order/person.png">
       <h3>登录后查看外卖订单</h3>
       <button @click.stop="$router.push('/login')">立即登陆</button>
@@ -76,7 +76,7 @@
 <script>
   import { MessageBox,Toast } from 'mint-ui';
   import {mapState} from 'vuex'
-  import {getInfo} from "../../api/axios";
+  import {deleteInfo, getInfo} from "../../api/axios";
   import Scroll from '../../components/scroll/scroll'
   import Loading from "../../components/loading/loading";
 
@@ -111,7 +111,9 @@
       },
       delOrder(id){
         MessageBox.confirm('确定删除吗?').then(() => {
-          getInfo('/api/order/deleteById',{id:id})
+
+
+          deleteInfo(`/api/order/deleteOrderById/${id}`)
             .then((res)=>{
               if(res.code == 200){
                 Toast({

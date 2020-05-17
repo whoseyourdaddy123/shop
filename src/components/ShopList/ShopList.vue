@@ -9,7 +9,7 @@
         <li class="shop_li border-1px" v-for="(shop,index) in shops" :key="index" @click="getInto(shop.id)" >
           <a>
             <div class="shop_left">
-              <img class="shop_img" :src="shop.avatar">
+              <img class="shop_img" v-lazy="shop.avatar">
             </div>
             <div class="shop_right">
               <section class="shop_detail_header">
@@ -78,7 +78,6 @@
   @import "../../common/stylus/mixins.styl"
   .msite_shop_list
     top-border-1px(#e4e4e4)
-    margin-top 10px
     background #fff
     .shop_header
       padding 10px 10px 0
@@ -90,8 +89,10 @@
         font-size 14px
         line-height 20px
     .shop_container
+
       margin-bottom 50px
       .shop_list
+        margin-top 10px
         .shop_li
           bottom-border-1px(#f1f1f1)
           width 100%

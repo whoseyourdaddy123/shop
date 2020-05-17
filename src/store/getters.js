@@ -9,5 +9,8 @@ export default {
   },
   positiveSize(state){
     return state.ratings.reduce((pre,rating)=> pre+(rating.rateType===1 ? 1 : 0 ),0)
+  },
+  totaCartFoods(state){
+    return state.cartFoods;
   }
 }

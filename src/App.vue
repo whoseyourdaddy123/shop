@@ -1,6 +1,10 @@
 <template>
   <div id="app">
-    <router-view></router-view>
+<keep-alive exclude="address1,newAddress1,Order">
+  <router-view></router-view>
+</keep-alive>
+
+
     <FooterGuide v-if="$route.meta.showFooter"></FooterGuide>
   </div>
 </template>

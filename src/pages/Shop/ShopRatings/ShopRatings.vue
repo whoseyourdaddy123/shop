@@ -272,9 +272,7 @@
               font-size: 10px
               color: rgb(147, 153, 159)
           .text
-            margin-bottom: 8px
-            line-height: 18px
-            color: rgb(7, 17, 27)
+            margin-top: 15px
             font-size: 12px
           .recommend
             line-height: 16px

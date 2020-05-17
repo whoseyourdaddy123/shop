@@ -154,7 +154,7 @@
           servicescore:  this.serviceCurrentScore,
           comment:  this.comment,
         }
-        postInfo('/api/rating/save',this.myComment).then((res)=>{
+        postInfo('/api/comment/save',this.myComment).then((res)=>{
             if(res.code == 200){
               Toast({
                 message: '评论完成',

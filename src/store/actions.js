@@ -17,7 +17,6 @@ import {getInfo,postInfo,updateInfo,deleteInfo} from "../api/axios";
 export default {
   //获取地址
    getAddress({commit,state},address){
-     console.log("address action..."+JSON.stringify(address))
      commit(RECEIVE_ADDRESS,{address})
     },
 
@@ -53,7 +52,6 @@ export default {
   logout({commit}){
      getInfo('/api/font/user/logout').then(()=>{
        commit(RESET_USERINFO)
-
      })
   },
 

@@ -11,5 +11,7 @@ export default {
   info: {},
   cartFoods:[],
   id:0,
-  searchList:[]
+  searchList:[],
+
+
 }

@@ -27,15 +27,16 @@
         </div>
         <div class="item">
           <ul>
-            <li class="ditem" v-for="(cartFood,inde) in cartFoods">
-              <img v-lazy="cartFood.img" width="55px" height="55px">
-              <div class="ditemw">
+            <li class="ditem" v-for="(cartFood,index) in cartFoods">
+              <div class="diteml">
+                <img v-lazy="cartFood.img"  width="55px" height="55px">
+              </div>
+              <div class="ditemr">
                 <div class="foodnameprice">
-                  <span>{{cartFood.name}}</span>
+                  <span>{{cartFood.name}} </span>
                   <span class="foodprice">¥{{Math.round(cartFood.price* cartFood.count*100)/100}}</span>
                 </div>
-                <div class="fen"></div>
-                <div class="muti"><span>✖️{{cartFood.count}} 份</span></div>
+                <div class="muti"><span>x️{{cartFood.count}} 份</span></div>
               </div>
             </li>
           </ul>
@@ -75,7 +76,10 @@
             <i class="money">¥{{info.deliverPrice + totalPrice }}</i>
           </span>
         </div>
-        <button class="tjbtn" @click="submitOrder">提交订单</button>
+        <div class="tjbtn">
+          <button  @click="submitOrder">提交订单</button>
+
+        </div>
       </div>
 
     </div>
@@ -150,97 +154,102 @@
 </script>
 
 <style lang="stylus" rel="stylesheet/stylus" scoped>
-  .address
-    padding: 7px
-  .shop
-    margin: 10px
-    padding-left: 10px
-    background-color: #fff
-    overflow hidden
-    .title
-      display inline-block
-      color: #999999;
-      background-color: #fff;
-      width: 100%;
-      line-height 33px
-      height 33px
-      .sname
+  .tj
+    position: absolute
+    top: 0px
+    width 100%
+    background: #fff;
+    .address
+      padding: 7px
+    .shop
+      margin: 10px
+      padding-left: 10px
+      background-color: #fff
+      overflow hidden
+      .title
         display inline-block
-        vertical-align top
+        color: #999999;
+        background-color: #fff;
+        width: 100%;
+        line-height 33px
+        height 33px
+        .sname
+          display inline-block
+          vertical-align top
 
-
-
-  .item
-    .ditem
-      margin-bottom 5px
-      padding 10px
-      box-sizing border-box
-      height 60px
-      width 100%
-      background-color #F8F8F8
-      .ditemw
-        width 250px
+    .item
+      .ditem
+        margin-bottom 5px
+        padding 2px
+        box-sizing border-box
         height 60px
-        vertical-align top
-        display inline-block
-        flex 1
-        padding-left 10px
-        position relative
-        .foodnameprice
-          display: flex
-          height: 20px
-          line-height: 20px
-          span
-            font-size: 14px
-            color: #333
-            width 200px
-          .foodprice
-            text-align  right
-        .fen
-          height 16px
-  .deliver
-    display flex
-    padding 30px 0 0 5px
-    span
-      margin-bottom 10px
-      width 300px
-    .deliverprice
-      text-align  right
-      padding-right 20px
+        background-color #F8F8F8
+        .diteml
+          display inline-block
 
-  .total
-    height 30px
-    border-top  1px grey dashed
-    span
-      width 100px
-    .totalprice
-      float  right
-      margin-top 10px
+        .ditemr
+          width 270px
+          float: right
+          display inline-block
+          vertical-align top
+          .foodnameprice
+            height: 20px
+            line-height: 20px
+            margin-right 10px
 
-  .order
-    left 0
-    right 0
-    bottom 0
-    flex 1
-    height 40px
-    background-color #fff
-    text-align center
-    .heprice
-      width 300px
-      display inline-block
+            .foodprice
+              float: right
+          .fen
+
+            height 16px
+          .muti
+            margin-top 10px
+            margin-right 8px
+            float right
+
+    .deliver
+      display flex
+      padding 30px 0 0 5px
       span
-        text-align right
-      .hj
-        float right
-        margin-right 30px
-        font-size: 16px
-        color: #333
-        .money
-          color #FB4E44
-          font-style normal
-          font-weight bold
-    .tjbtn
-      display inline-block
-      background-color #f8c74e
+        margin-bottom 10px
+        width 300px
+      .deliverprice
+        text-align  right
+        padding-right 20px
+
+    .total
+      height 30px
+      border-top  1px grey dashed
+      span
+        width 100px
+      .totalprice
+        float  right
+        margin-top 10px
+
+    .order
+      left 0
+      right 0
+      bottom 0
+      flex 1
       height 40px
+      background-color #fff
+      text-align center
+
+      .heprice
+        display inline-block
+        margin-left 100px
+
+        .hj
+          float right
+          font-size: 16px
+          color: #333
+          .money
+            color #FB4E44
+            font-style normal
+            font-weight bold
+      .tjbtn
+        float right
+        display inline-block
+        background-color #f8c74e
+
 </style>

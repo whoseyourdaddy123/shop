@@ -1,8 +1,9 @@
 <template>
     <div>
-    <!--  shop
-     {{$route.params.id}}-->
+
       <ShopHeader/>
+
+
       <div class="tab">
         <div class="tab-item">
           <router-link :to="'/seller/goods/' + this.$route.params.id" replace>点餐</router-link>
@@ -14,9 +15,11 @@
           <router-link :to="'/seller/infos/' + this.$route.params.id" replace>商家</router-link>
         </div>
       </div>
-      <keep-alive>
-        <router-view/>
-      </keep-alive>
+    <keep-alive>
+      <router-view/>
+    </keep-alive>
+
+
     </div>
 </template>
 

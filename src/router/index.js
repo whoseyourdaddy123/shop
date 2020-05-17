@@ -75,7 +75,8 @@ export default new VueRouter({
           path:'/seller/infos/:id',
           component: ShopInfos
         },
-        ]
+        ],
+
     },
     {
       path: '/payment',

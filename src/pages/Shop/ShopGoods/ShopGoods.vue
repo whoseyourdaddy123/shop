@@ -1,45 +1,52 @@
 <template>
   <div>
-    <div class="goods">
-      <div class="menu-wrapper" ref="menuWrapper">
-        <ul class="content">
-          <li v-for="(good,index) in goods" :key="index"
-              class="menu-item" :class="{current: index==currentIndex }"
-            @click="changIndex(index)"
+
+      <div class="goods">
+        <div class="menu-wrapper" ref="menuWrapper">
+          <ul class="content">
+            <li v-for="(good,index) in goods" :key="index"
+                class="menu-item" :class="{current: index==currentIndex }"
+                @click="changIndex(index)"
             >
             <span class="text bottom-border-1px">
             <img class="icon" :src="good.icon" v-if="good.icon"> {{good.name}}
             </span>
-          </li>
-        </ul>
-      </div>
-      <div class="foods-wrapper" ref="foodsWrapper" >
-        <ul ref="cheight" >
-          <li class="food-list-hook"  v-for="(good,index) in goods" :key="index">
-            <h1 class="title">{{good.name}}</h1>
-            <ul>
-              <li class="food-item bottom-border-1px" v-for="(food,index) in good.foods"
-                  :key="index" @click="clickFood(food)">
-                <div class="aa"><img width="57" height="57" v-lazy="food.img"></div>
-                <div class="content"><h2 class="name">{{food.name}}</h2>
-                  <p class="desc">{{food.info}}</p>
-                  <div class="extra"><span class="count">月售 {{food.sellCount}} 份</span>
-                    <span v-if="food.rating">好评率 {{food.rating}}%</span></div>
-                  <div class="price">
-                    <span class="now">￥{{food.price}}</span>
-                    <span class="old" v-if="food.oldPrice">￥{{food.oldPrice}}</span>
+            </li>
+          </ul>
+        </div>
+        <div class="foods-wrapper" ref="foodsWrapper" >
+          <ul ref="cheight" >
+            <li class="food-list-hook"  v-for="(good,index) in goods" :key="index">
+              <h1 class="title">{{good.name}}</h1>
+              <ul>
+                <li class="food-item bottom-border-1px" v-for="(food,index) in good.foods"
+                    :key="index" @click="clickFood(food)">
+
+                  <div class="aa">
+                    <img width="57" height="57" v-lazy="food.img">
                   </div>
-                  <div class="cartcontrol-wrapper">
-                    <CartControl :food="food"></CartControl>
+
+                  <div class="content"><h2 class="name">{{food.name}}</h2>
+                    <p class="desc">{{food.info}}</p>
+                    <div class="extra"><span class="count">月售 {{food.sellCount}} 份</span>
+                      <span v-if="food.rating">好评率 {{food.rating}}%</span></div>
+                    <div class="price">
+                      <span class="now">￥{{food.price}}</span>
+                      <span class="old" v-if="food.oldPrice">￥{{food.oldPrice}}</span>
+                    </div>
+                    <div class="cartcontrol-wrapper">
+                      <CartControl :food="food"></CartControl>
+                    </div>
                   </div>
-                </div>
-              </li>
-            </ul>
-          </li>
-        </ul>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
       </div>
-    </div>
-    <Food :food="food" ref="food"  />
+
+
+    <Food :food="food" ref="food" :cartFoods="cartFoods" />
     <ShopCart />
   </div>
 </template>
@@ -64,6 +71,8 @@
       CartControl,
       Food
     },
+
+
     mounted(){
       const id = this.$route.params.id
       this.$store.state.id = id
@@ -72,14 +81,7 @@
       this.$store.dispatch('getGoods',id)
       localStorage
 
-     /*this.$store.dispatch('getGoods',id).then(()=> {
-       this.$nextTick(() => {
-         console.log("tick...")
-         let scroll = new BScroll('.menu-wrapper')
-         console.log(scroll)
-         console.log("after tick...")
-       })
-     })*/
+
 
     },
     methods:{
@@ -111,7 +113,6 @@
           tops.push(top)
         })
         this.tops = tops
-        console.log(this.tops)
       },
       //点击左侧分类右侧联动
       changIndex(index){
@@ -135,7 +136,7 @@
         }
     },
     computed:{
-      ...mapState(['goods']),
+      ...mapState(['goods',"cartFoods"]),
       //当前分类的下标
       currentIndex(){
         const{tops,scrollY} = this

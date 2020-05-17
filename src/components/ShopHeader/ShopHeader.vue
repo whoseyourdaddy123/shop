@@ -49,9 +49,10 @@
           </ul>
           <h3 class="brief-modal-title"><span>公告</span></h3>
           <div class="brief-modal-notice">{{info.bulletin}}</div>
-          <div class="mask-footer">
-            <span class="iconfont " @click="toggleShopShow">
-          </span>
+          <div class="mask-footer" @click="toggleShopShow">
+            <svg class="icon" aria-hidden="true">
+              <use xlink:href="#iconcancel"></use>
+            </svg>
           </div>
         </div>
         <div class="brief-modal-cover"></div>
@@ -65,7 +66,12 @@
             <span class="activity-content">{{support.content}}</span></li>
 
         </ul>
-        <div class="activity-sheet-close"><span class="iconfont icon-close" @click="toggleSupportShow"></span></div>
+        <div class="activity-sheet-close">
+          <svg class="icon" aria-hidden="true" @click="toggleSupportShow">
+            <use xlink:href="#iconclose"></use>
+          </svg>
+
+        </div>
       </div>
       <div class="activity-sheet-cover"></div>
     </div>
@@ -375,10 +381,9 @@
 
         .mask-footer
           position absolute
-          bottom -60px
-          left 50%
+          top 0
+          right 0
           padding 6px
-          border 1px solid rgba(255, 255, 255, .7)
           border-radius 50%
           transform translateX(-50%)
           span

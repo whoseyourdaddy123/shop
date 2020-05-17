@@ -1,29 +1,40 @@
 <template>
-  <div class="cartcontrol">
-    <transition name="move">
-      <div class="iconfont iconjianhao" v-if="food.count"  @click.stop="changeCount(false)"></div>
-    </transition>
-    <div class="cart-count" v-if="food.count">{{food.count}}</div>
-    <div class="iconfont iconjiahao"  @click.stop="changeCount(true)"></div>
-  </div>
+  <keep-alive>
+    <div class="cartcontrol">
+      <transition name="move">
+        <div class="iconfont iconjianhao" v-if="food.count"  @click.stop="changeCount(false)"></div>
+      </transition>
+      <div class="cart-count" v-if="food.count">{{food.count}}</div>
+      <div class="iconfont iconjiahao"  @click.stop="changeCount(true)"></div>
+    </div>
+  </keep-alive>
+
+
+
+
 </template>
 
 <script type="text/ecmascript-6">
+  import {mapGetters} from "vuex";
+
   export default {
 
     props:{
-      food: Object
+      food: Object,
+      cartFoods: Array
     },
     methods:{
       changeCount(isAdd){
         if(isAdd){
-          console.log(JSON.stringify(this.food)+ 'this food')
           this.$store.dispatch('increaseCount',{food:this.food})
         }else{
           this.$store.dispatch('decreaseCount',{food:this.food})
 
         }
       }
+    },
+    computed:{
+      ...mapGetters(['totaCartFoods'])
     }
 
   }

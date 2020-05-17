@@ -15,7 +15,7 @@
           </div>
         </div>
         <div class="login_content">
-          <form @submit.prevent="submitForm">
+          <form @submit.prevent="submitForm" >
             <div :class="{on: loginMethods}">
               <section class="login_message">
                 <input type="tel" maxlength="11" placeholder="手机号" v-model="phone">
@@ -89,13 +89,25 @@
         alertText: '',
         alertShow: false,
         interval: 0,
-        sending: false
+        sending: false,
+        isSendable: true,
+
       }
     },
     computed: {
       rightPhone() {
         const {phone} = this
         return /^1[345789]\d{9}$/.test(phone)
+      },
+
+    },
+    watch:{
+      time(){
+        if(this.time == 0 ){
+          return this.isSendable = true
+        }else{
+          return this.isSendable = false;
+        }
       }
     },
     components: {
@@ -103,10 +115,10 @@
       HeaderTop
     },
     methods: {
+
       sendYZM(event) {
         //倒计时
-        if (this.time == 0) {
-
+        if (this.time == 0 && this.isSendable ) {
           this.time = 10
           this.interval = setInterval(() => {
 
@@ -116,17 +128,21 @@
               clearInterval(this.interval)
             }
           }, 1000);
-        }
-        //发送验证码
-        getInfo("/api/font/user/sendCode", {phone: this.phone}).then(res => {
-          if (res.code != 200) {
-            this.showAlert("发送验证码错误")
-            if (this.time) {
-              this.time = 0
-              clearInterval(this.interval)
+          //发送验证码
+          getInfo("/api/font/user/sendCode", {phone: this.phone}).then(res => {
+            if (res.code != 200) {
+              this.showAlert("发送验证码错误")
+              if (this.time) {
+                this.time = 0
+                clearInterval(this.interval)
+              }
             }
-          }
-        })
+          })
+        }
+
+
+
+
       },
         submitForm() {
         if (this.loginMethods) {
@@ -140,6 +156,7 @@
             this.showAlert("短信验证码不是6位")
             return
           }
+
           //发送ajax请求提交表单数据
             postInfo('/api/font/user/smsLogin',{phone:this.phone,code:this.code})
             .then(res=>{

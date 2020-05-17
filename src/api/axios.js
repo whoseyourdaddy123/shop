@@ -13,8 +13,7 @@ export  function getInfo(url,params={}) {
   })
 }
 export function  postInfo(url,data = {}){
-  console.log("url post"+url)
-  console.log("axios data"+ JSON.stringify(data))
+
   return new Promise((resolve,reject) => {
     axios.post(url,data)
       .then(response => {
